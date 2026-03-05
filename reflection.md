@@ -28,8 +28,9 @@ There was none.
 I tested it manually of all the bugs Claude pointed out.
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
+  I asked Claude to fix all the bugs in all files and run the tests. It added more tests and all passed.
 - Did AI help you design or understand any tests? How?
-
+  All the tests were clear to me as the naming and function is straigh forward.
 ---
 
 ## 4. What did you learn about Streamlit and state?
