@@ -5,16 +5,20 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the secret number kept changing" or "the hints were backwards").
+Bug 1: The secret number was 92 but when I guess 5, it says go lower which is contradictory to the secret number. The hints are backwards.
+Bug 2: I cannot restart the game
+Bug 3: All levels were showing the same 1 - 100 range for possible numbers.
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+Claude Code
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+AI suggested to swap the "go higher" with the "go lower" which is correct, and it fixed the bug1.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+
 
 ---
 
