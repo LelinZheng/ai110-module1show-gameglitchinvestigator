@@ -18,13 +18,14 @@ Claude Code
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 AI suggested to swap the "go higher" with the "go lower" which is correct, and it fixed the bug1.
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-
+There was none.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
+I tested it manually of all the bugs Claude pointed out.
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
