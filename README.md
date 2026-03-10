@@ -25,13 +25,33 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] **Game Purpose:** Glitchy Guesser is a number guessing game built with Streamlit. The player selects a difficulty (Easy: 1–20, Normal: 1–100, Hard: 1–200) and has a limited number of attempts to guess a randomly chosen secret number. After each guess, the game gives a Higher/Lower hint. The player earns points based on how quickly they guess correctly.
+
+- [x] **Bugs Found:**
+  1. Go HIGHER/LOWER hints were swapped — guessing too high told you to go higher, and vice versa.
+  2. The secret number reset on every button click because it wasn't stored in `st.session_state`.
+  3. On even-numbered attempts, the secret was converted to a string, breaking numeric comparisons.
+  4. Hard mode range was 1–50 instead of 1–200, making it easier than Normal mode.
+  5. Attempts were initialized to 1 instead of 0, causing an off-by-one error in the display and guess count.
+  6. The win score formula had an extra `+1`, inflating the score incorrectly.
+  7. The info message hardcoded "1 and 100" instead of showing the actual difficulty range.
+  8. New Game used a hardcoded `randint(1, 100)` instead of the selected difficulty's range.
+  9. New Game didn't reset `status` or `history`, so the game wasn't actually restartable.
+
+- [x] **Fixes Applied:**
+  1. Swapped the return values in `check_guess` so Higher/Lower hints are correct.
+  2. Stored the secret number in `st.session_state` on first load so it persists across reruns.
+  3. Removed the string conversion of the secret on even attempts in the submit block.
+  4. Corrected Hard mode range to 1–200 in `get_range_for_difficulty`.
+  5. Initialized `st.session_state.attempts` to 0 instead of 1.
+  6. Removed the extra `+1` from the win score formula in `update_score`.
+  7. Updated the `st.info` message to use the dynamic `{low}` and `{high}` variables.
+  8. Updated New Game to use `random.randint(low, high)` based on the selected difficulty.
+  9. Added resets for `status` and `history` in the New Game block.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- ![Demo Screenshot of the APP](screenshots/game.png)  
 
 ## 🚀 Stretch Features
 
