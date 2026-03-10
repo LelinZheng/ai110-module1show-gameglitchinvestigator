@@ -7,7 +7,7 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Normal":
         return 1, 100
     if difficulty == "Hard":
-        return 1, 200
+        return 1, 200  # FIX: Corrected Hard mode range from 1-50 to 1-200 with Claude Code
     return 1, 100
 
 
@@ -35,7 +35,7 @@ def check_guess(guess, secret):
 
     try:
         if guess > secret:
-            return "Too High", "📉 Go LOWER!"
+            return "Too High", "📉 Go LOWER!"  # FIX: Swapped backwards hints (was Go HIGHER/LOWER) with Claude Code
         else:
             return "Too Low", "📈 Go HIGHER!"
     except TypeError:
@@ -49,7 +49,7 @@ def check_guess(guess, secret):
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     if outcome == "Win":
-        points = 100 - 10 * attempt_number
+        points = 100 - 10 * attempt_number  # FIX: Removed extra +1 in score formula that inflated win score with Claude Code
         if points < 10:
             points = 10
         return current_score + points
@@ -90,10 +90,10 @@ st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
 if "secret" not in st.session_state:
-    st.session_state.secret = random.randint(low, high)
+    st.session_state.secret = random.randint(low, high)  # FIX: Use difficulty range instead of hardcoded randint(1, 100) with Claude Code
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 0
+    st.session_state.attempts = 0  # FIX: Initialized to 0 instead of 1 to fix off-by-one error with Claude Code
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -107,7 +107,7 @@ if "history" not in st.session_state:
 st.subheader("Make a guess")
 
 st.info(
-    f"Guess a number between {low} and {high}. "
+    f"Guess a number between {low} and {high}. "  # FIX: Show dynamic range instead of hardcoded '1 and 100' with Claude Code
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
@@ -132,10 +132,10 @@ with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
 if new_game:
-    st.session_state.attempts = 0
-    st.session_state.secret = random.randint(low, high)
-    st.session_state.status = "playing"
-    st.session_state.history = []
+    st.session_state.attempts = 0  # FIX: Reset attempts so New Game is actually restartable with Claude Code
+    st.session_state.secret = random.randint(low, high)  # FIX: Use difficulty range in New Game instead of hardcoded randint(1, 100) with Claude Code
+    st.session_state.status = "playing"  # FIX: Reset status on New Game so the game is restartable with Claude Code
+    st.session_state.history = []  # FIX: Clear history on New Game so old guesses don't persist with Claude Code
     st.success("New game started.")
     st.rerun()
 
@@ -157,7 +157,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        secret = st.session_state.secret
+        secret = st.session_state.secret  # FIX: Removed string conversion of secret on even attempts that broke comparisons with Claude Code
 
         outcome, message = check_guess(guess_int, secret)
 
